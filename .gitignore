@@ -1,0 +1,5 @@
+# IDE config folder
+.idea
+
+# Binaries
+*.out
