@@ -2,4 +2,5 @@
 .idea
 
 # Binaries
+build
 *.out
