@@ -1,22 +1,32 @@
 CC = gcc
-TARGET = hello_world.c
 
-SRC = $(TARGET)
-OBJ = $(TARGET:.c=.o)
-
+SRC = hello_world.c
 BUILD_DIR = build
+
+OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
 EXEC = hello_world
 
+# - lolcat suffix check -
+COLOR := $(shell command -v lolcat)
 
-all : $(BUILD_DIR)/$(EXEC)
+ifeq (, $(COLOR))
+	COLOR=
+else
+	COLOR= |lolcat
+endif
+# ----------------------
 
-%.o : %.c
-	$(CC) -o $@ -c $<
+all : $(EXEC)
 
-$(BUILD_DIR)/$(EXEC) : $(OBJ)
-	mkdir -p $(BUILD_DIR)
-	$(CC) -o $@ $^
+$(BUILD_DIR)/%.o : %.c
+	@ mkdir -p build
+	@ $(CC) -o $@ -c $<
+
+$(EXEC) : $(OBJ)
+	@ $(CC) -o $@ $^
 
 clean:
-	rm -rf *.o
-	rm -rf build
+	@ echo "Cleaning" $(COLOR)
+	@ rm -rf *.o
+	@ rm -rf build
+	@ rm -rf $(EXEC)
