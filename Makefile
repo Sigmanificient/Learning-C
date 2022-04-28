@@ -15,18 +15,20 @@ else
 	COLOR= |lolcat
 endif
 # ----------------------
-
+.SILENT:
 all : $(EXEC)
 
 $(BUILD_DIR)/%.o : %.c
-	@ mkdir -p build
-	@ $(CC) -o $@ -c $<
+	mkdir -p build
+	$(CC) -o $@ -c $<
 
 $(EXEC) : $(OBJ)
-	@ $(CC) -o $@ $^
+	$(CC) -o $@ $^
 
 clean:
-	@ echo "Cleaning" $(COLOR)
-	@ rm -rf *.o
-	@ rm -rf build
-	@ rm -rf $(EXEC)
+	echo "Cleaning" $(COLOR)
+	rm -rf *.o
+	rm -rf build
+	rm -rf $(EXEC)
+
+.PHONY: clean
