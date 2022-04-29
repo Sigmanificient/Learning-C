@@ -12,11 +12,11 @@ int main(void) {
     printf("| Fahrenheit | Celsius |\n");
     printf("+----------------------+\n");
 
-    fahr = lower;
-    while (fahr <= upper) {
+    fahr = upper;
+    while (fahr >= lower) {
         celsius = (5.0 / 9.0) * (fahr - 32);
         printf("| %10.0f | %7.3f |\n", fahr, celsius);
-        fahr = fahr + step;
+        fahr = fahr - step;
     }
 
     printf("+----------------------+\n");
