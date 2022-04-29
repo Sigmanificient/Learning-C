@@ -1,6 +1,4 @@
 CC = gcc
-
-SRC = hello_world.c
 BUILD_DIR = build
 
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
